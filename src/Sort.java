@@ -1,3 +1,13 @@
+/*
+ * Module 6 CTA Option 1: Storing an ArrayList I
+ * Brian Gunther
+ * CSC372: Programming II
+ * Colorado State University Global
+ * Dr. Vanessa Cooper
+ * September 22, 2024
+ * 
+ */
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
