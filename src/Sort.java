@@ -21,7 +21,7 @@ public class Sort {
 			// Inner loop locates the index of the minimum value between i and the end of the list
 			for (int j = i + 1; j < student.size(); ++j) {
 				// The Comparator object passed by the caller determines whether the name or roll number is compared here
-				if (studentCompare.compare(student.get(j), student.get(minIndex)) < 1) {
+				if (studentCompare.compare(student.get(j), student.get(minIndex)) < 0) {
 					minIndex = j;
 				}
 			}
