@@ -4,6 +4,12 @@ public class Student {
 	private String name;
 	private String address;
 	
+	public Student(int rollno, String name, String address) {
+		this.rollno = rollno;
+		this.name = name;
+		this.address = address;
+	}
+	
 	/**
 	 * Getter for the roll number
 	 * @return the student's roll number
@@ -50,6 +56,12 @@ public class Student {
 	 */
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public void printInfo() {
+		System.out.println("Roll Number: " + getRollno());
+		System.out.println("Student Name: " + getName());
+		System.out.println("Address: " + getAddress());
 	}
 	
 }

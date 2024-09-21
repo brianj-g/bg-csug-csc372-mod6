@@ -1,12 +1,12 @@
 import java.util.Comparator;
 
 /**
- * Compares two strings using the Comparator interface
+ * Compares two student names using the Comparator interface
  */
-public class NameComparator implements Comparator<String>{
+public class NameComparator implements Comparator<Student>{
 	@Override
-	public int compare(String first, String second) {
-		// Compare the two strings and return -1, 0, or 1 to declare their precedence
-		return first.compareTo(second);
+	public int compare(Student first, Student second) {
+		// Compare the two student names and return -1, 0, or 1 to declare their precedence
+		return first.getName().compareTo(second.getName());
 	}
 }
