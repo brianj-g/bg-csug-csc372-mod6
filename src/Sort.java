@@ -15,14 +15,18 @@ public class Sort {
 	public static void sortObjects(ArrayList<Student> student, Comparator<Student> studentCompare){
 		Student tmpStudent;
 		
+		// Outer loop keeps track of position in the array
 		for (int i = 0; i < student.size() -1; ++i) {
 			int minIndex = i;
+			// Inner loop locates the index of the minimum value between i and the end of the list
 			for (int j = i + 1; j < student.size(); ++j) {
+				// The Comparator object passed by the caller determines whether the name or roll number is compared here
 				if (studentCompare.compare(student.get(j), student.get(minIndex)) < 1) {
 					minIndex = j;
 				}
 			}
 			
+			// Perform a swap of i and minIndex to place the minimum value at location i
 			tmpStudent = student.get(i);
 			student.set(i, student.get(minIndex));
 			student.set(minIndex, tmpStudent);

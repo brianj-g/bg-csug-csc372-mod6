@@ -4,6 +4,12 @@ public class Student {
 	private String name;
 	private String address;
 	
+	/**
+	 * Default constructor for Student class to simplify instantiation
+	 * @param rollno
+	 * @param name
+	 * @param address
+	 */
 	public Student(int rollno, String name, String address) {
 		this.rollno = rollno;
 		this.name = name;
@@ -58,6 +64,9 @@ public class Student {
 		this.address = address;
 	}
 	
+	/**
+	 * Print the student information to console
+	 */
 	public void printInfo() {
 		System.out.println("Roll Number: " + getRollno());
 		System.out.println("Student Name: " + getName());
