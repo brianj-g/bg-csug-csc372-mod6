@@ -10,6 +10,11 @@ public class Student {
 	 * @param name
 	 * @param address
 	 */
+	
+	public Student() {
+		// create an empty object
+	}
+	
 	public Student(int rollno, String name, String address) {
 		this.rollno = rollno;
 		this.name = name;

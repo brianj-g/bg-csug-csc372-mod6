@@ -35,8 +35,41 @@ public class ManageStudents {
 		System.out.println("1. Print original (unsorted) list");
 		System.out.println("2. Sort list by name");
 		System.out.println("3. Sort list by roll number");
-		System.out.println("4. Exit");
-		System.out.print("Please enter a number 1 - 4 and press Enter/Return: ");
+		System.out.println("4. Manually add a student (optional)");
+		System.out.println("5. Exit");
+		System.out.print("Please enter a number 1 - 5 and press Enter/Return: ");
+	}
+	
+	public static Student addStudent(){
+		Scanner s = new Scanner(System.in);
+		
+		Student student = new Student();
+
+		System.out.println("Entering Student Information");
+		System.out.print("Roll number: ");
+		try {
+			int rollno = s.nextInt();
+			student.setRollno(rollno);	
+		} catch (InputMismatchException e) {
+			System.out.println("Invalid input");
+			student.setRollno(0);
+		}
+		s.nextLine();
+		System.out.print("Name: ");
+		String name = s.nextLine();
+		if (name == null) {
+			name = "null";
+		}
+		student.setName(name);
+		System.out.print("Address: ");
+		String address = s.nextLine();
+		if (address == null) {
+			address = "null";
+		}
+		student.setAddress(address);
+		System.out.println();
+		
+		return student;
 	}
 
 	/**
@@ -47,7 +80,7 @@ public class ManageStudents {
 		// Create a list of students using a pre-generated set of names and addresses
 		ArrayList<Student> studentList = populateList();
 		// Create a reference copy of the list
-		ArrayList<Student> studentListOriginal = new ArrayList<Student>(studentList);
+		ArrayList<Student> studentListUnsorted = new ArrayList<Student>(studentList);
 		
 		int menuOption = 0;
 		Scanner s = new Scanner(System.in);
@@ -67,8 +100,8 @@ public class ManageStudents {
 					// Print unsorted student list
 					System.out.println("Unsorted List of Students: ");
 					System.out.println();
-					for (int i = 0; i < studentListOriginal.size(); ++i) {
-						studentListOriginal.get(i).printInfo();
+					for (int i = 0; i < studentListUnsorted.size(); ++i) {
+						studentListUnsorted.get(i).printInfo();
 						System.out.println();
 					}
 					break;
@@ -98,17 +131,26 @@ public class ManageStudents {
 					break;
 				
 				case 4:
+					// Allow user to manually create a student array
+					System.out.println("Manual entry has been selected!");
+					Student tmpStudent = addStudent();
+					studentList.add(tmpStudent);
+					studentListUnsorted.add(tmpStudent);
+					break;
+					
+				case 5:
 					// Exit message
 					System.out.println("Exiting.");
 					break;
 				
 				default:
-					System.out.println("You must enter a number 1 - 4");
+					System.out.println("You must enter a number 1 - 5");
 					System.out.println();
+					break;
 			}
 		} 
-		// Exit the program if the user enters '4'
-		while (menuOption != 4);
+		// Exit the program if the user enters '5'
+		while (menuOption != 5);
 		
 		s.close();
 	}
