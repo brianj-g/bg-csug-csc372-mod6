@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class ManageStudents {
 	/**
@@ -24,16 +26,90 @@ public class ManageStudents {
 		
 		return studentList;
 	}
-
-	public static void main(String[] args) {
-		ArrayList<Student> studentList = populateList();
-		
-		// Print unsorted student list
-		System.out.println("Unsorted List of Students: ");
-		for (int i = 0; i < studentList.size(); ++i) {
-			studentList.get(i).printInfo();
-			System.out.println();
-		}
+	
+	/**
+	 * Prints a simple text-based menu with options
+	 */
+	public static void menu() {
+		System.out.println("*** Student Management ***");
+		System.out.println("1. Print original (unsorted) list");
+		System.out.println("2. Sort list by name");
+		System.out.println("3. Sort list by roll number");
+		System.out.println("4. Exit");
+		System.out.print("Please enter a number 1 - 4 and press Enter/Return: ");
 	}
 
+	/**
+	 * Main method.  Instantiates an array of students and provides the options to sort by name or roll number
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// Create a list of students using a pre-generated set of names and addresses
+		ArrayList<Student> studentList = populateList();
+		// Create a reference copy of the list
+		ArrayList<Student> studentListOriginal = new ArrayList<Student>(studentList);
+		
+		int menuOption = 0;
+		Scanner s = new Scanner(System.in);
+		
+		do {
+			menu();
+			try {
+				menuOption =  s.nextInt();
+			} catch (InputMismatchException e) {
+				s.nextLine();
+				System.out.println("Invalid input");
+			}
+
+			System.out.println();
+			switch (menuOption){
+				case 1:
+					// Print unsorted student list
+					System.out.println("Unsorted List of Students: ");
+					System.out.println();
+					for (int i = 0; i < studentListOriginal.size(); ++i) {
+						studentListOriginal.get(i).printInfo();
+						System.out.println();
+					}
+					break;
+				
+				case 2:
+					// Sort the list by name
+					System.out.println("Sorting by name: ");
+					System.out.println();
+					// Uses the NameComparator class to compare names
+					Sort.sortObjects(studentList, new NameComparator());
+					for (int i = 0; i < studentList.size(); ++i) {
+						studentList.get(i).printInfo();
+						System.out.println();
+					}
+					break;
+				
+				case 3:
+					// Sort the list by roll number
+					System.out.println("Sorting by roll number: ");
+					System.out.println();
+					// Uses the IdComparator class to compare roll numbers (Id's)
+					Sort.sortObjects(studentList, new IdComparator());
+					for (int i = 0; i < studentList.size(); ++i) {
+						studentList.get(i).printInfo();
+						System.out.println();
+					}
+					break;
+				
+				case 4:
+					// Exit message
+					System.out.println("Exiting.");
+					break;
+				
+				default:
+					System.out.println("You must enter a number 1 - 4");
+					System.out.println();
+			}
+		} 
+		// Exit the program if the user enters '4'
+		while (menuOption != 4);
+		
+		s.close();
+	}
 }

@@ -18,7 +18,7 @@ public class Sort {
 		for (int i = 0; i < student.size() -1; ++i) {
 			int minIndex = i;
 			for (int j = i + 1; j < student.size(); ++j) {
-				if (studentCompare.compare(student.get(j), student.get(i)) < 1) {
+				if (studentCompare.compare(student.get(j), student.get(minIndex)) < 1) {
 					minIndex = j;
 				}
 			}
